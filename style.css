@@ -1,7 +1,45 @@
 h1 {
-    color: red;
+    color: rgb(255, 51, 0);
+    font-family:Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
 }
+
+html {background-color:rgb(247, 238, 199);}
 
 .createTask {
 
+}
+label {
+    color: rgb(255, 51, 0);
+    font-family: Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal; 
+
+}
+#but_addtocal {
+    background-color: rgb(189, 173, 144);
+    border: none;
+    color: rgb(255, 51, 0);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px 24px;}
+}
+#time{
+    font-family: Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 4px;
+    color: rgb(230, 230, 230);
+
+}
+#task{
+    font-family: Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 4px;
+    color: rgb(230, 230, 230);
 }

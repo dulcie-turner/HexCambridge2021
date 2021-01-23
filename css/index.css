@@ -58,29 +58,35 @@
 .header .swiper-container .slide1 {
 	background: url(../img/banner01.jpg) no-repeat center top;
 	background-size: cover;
-	height: 380px;
+	height: 500px;
 }
 
 .header .swiper-container .slide2 {
 	background: url(../img/banner02.jpg) no-repeat center top;
 	background-size: cover;
-	height: 380px;
+	height: 500px;
 }
 
 .header .swiper-container .slide3 {
 	background: url(../img/banner03.jpg) no-repeat center top;
 	background-size: cover;
-	height: 380px;
+	height: 500px;
+}
+
+.header .swiper-container .Burnout {
+	background: url(../img/burnout.jpg) no-repeat center top;
+	background-size: cover;
+	height: 500px;
 }
 
 .title {
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 50px;
 }
 
 .main_title {
 	color: #009900;
-	font-size: 22px;
+	font-size: 35px;
 }
 
 .sub_title {
@@ -88,57 +94,10 @@
 	color: #333;
 }
 
-.floor1 .photos>div {
-	float: left;
-}
 
-.floor1 .photos .rgt {
-	float: right !important;
-}
 
-.floor1 .photos .ctr {
-	margin-left: 14px;
-	position: relative;
-}
 
-.floor1 .photos {
-	margin-top: 30px;
-}
 
-.floor1 .photos .up {
-	position: relative;
-	height: 350px;
-	overflow: hidden;
-}
-
-.floor1 .photos .down {
-	margin-top: 10px;
-	position: relative;
-	height: 350px;
-	overflow: hidden;
-}
-
-.floor1 .photos .ctr {
-	height: 715px;
-	overflow: hidden;
-}
-
-.floor1 .photos img {
-	display: block;
-}
-
-.floor1 .photos .cover {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0,0,0,0.5);
-	text-align: center;
-	font-size: 22px;
-	color: #fff;
-	line-height: 350px;
-}
 
 
 .floor2 .photos {
@@ -257,3 +216,61 @@
 	cursor: pointer;
 	opacity: 0;
 }
+
+
+.floor4 .news {
+	margin-top: 50px;
+}
+
+.floor4 .news ul li {
+	float: left;
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.floor4 .news ul li>div {
+	float: left;
+}
+
+.floor4 .news ul li .lft {
+	position: relative;
+}
+
+.floor4 .news ul li .lft img {
+	display: block;
+	height: 300px;
+}
+
+.floor4 .news ul li .lft .cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(255, 150, 0, 0.75);
+	text-align: center;
+	line-height: 92px;
+	color: #fff;
+	font-size: 42px;
+}
+
+.floor4 .news ul li .rgt {
+	width: 300px;
+	margin-left: 50px;
+}
+
+.floor4 .news ul li .rgt .up {
+	font-size: 25px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border-bottom: 1px dashed #999;
+	padding-bottom: 30px;
+}
+
+.floor4 .news ul li .rgt .down {
+	height: 100px;
+	margin-top: 50px;
+	overflow: hidden;
+}
+
