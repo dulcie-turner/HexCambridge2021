@@ -34,14 +34,14 @@ function addTaskToFile(task, time) {
         }
 
         /* Loop through and join the previous tasks to the new one, to make an updated tasklist */
-        taskObj[String(previousID + 1)] = {taskName: task, taskTime: time };
+        taskObj[String(previousID + 1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString()};
         for (const [i] of Object.keys(originalJSON)) { 
-            taskObj[i] = {taskName: originalJSON[i]["taskName"], taskTime: originalJSON[i]["taskTime"]} 
+            taskObj[i] = {taskName: originalJSON[i]["taskName"], taskTime: originalJSON[i]["taskTime"], taskDate: originalJSON[i]["taskDate"]} 
         }
 
     } else {
         /* Create a brand new list of tasks*/
-        taskObj[String(1)] = {taskName: task, taskTime: time };
+        taskObj[String(1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString() };
     }
 
     /* Store the updated list of tasks */
