@@ -8,10 +8,19 @@
 <body>
 
 <h1>Test</h1>
-<p id="demo"></p>
+<form onsubmit="addTask" name="addTask">
+    <label for="task">Task:</label><br>
+    <input type="text" id="task" name="task" value=""><br>
+    <input type="submit" value="Add to Calendar">
+</form> 
+
+<p id="taskContainer"></p>
 
 <script>
-    document.getElementById("demo").innerHTML = "Javascript test";
+function addTask() {
+  var task = document.forms["addTask"]["task"].value;
+  document.getElementById("taskContainer").value = task;
+} 
  </script>
 
 </body>
