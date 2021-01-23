@@ -8,18 +8,27 @@
 
 <body>
 <h1>Test</h1>
+<div id="createTask" style="width:40%; border-style:solid; padding:15px">
 <form name="newTask">
-    <label for="task">Task:</label><br>
-    <input type="text" id="task" name="task" value=""><br>
+    <label for="task" style="width:50px; float:left" >Task:</label>
+    <input type="text" id="task" name="task" value="" style="overflow: auto; width:80%"><br>
+
+    <label for="time" style="width:120px; float:left">Time Required:</label>
+    <input type="text" id="time" name="time" value="" style="overflow: auto; width:57.5%"><br>
     <input type="button" onclick="addTask()" value="Add to Calendar">
 </form> 
+</div>
+
 
 <br>
 
-<table id="taskList" border="2">
-    <tr><td><b>Task Name</b></td></tr>
+<div id="taskList">
+<table id="taskTable" border="2">
+    <tr><td><b>Task Name</b></td>
+        <td><b>Time Required</b></td>
+    </tr>
 </table>
-
+</div>
 
 </body>
 </html> 
