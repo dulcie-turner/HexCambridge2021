@@ -3,8 +3,13 @@ function addTask() {
 
     var task = document.forms["newTask"]["task"].value;
     var time = document.forms["newTask"]["time"].value;
-    addTaskToFile(task, time);
-    addTaskToTable(task,time);
+    if (isNaN(time)) {
+        document.getElementById("errorMessage").innerHTML = "Error! Please enter a numeric time value";
+    } else {
+        document.getElementById("errorMessage").innerHTML = "";
+        addTaskToFile(task, time);
+        addTaskToTable(task,time);
+    }
 
   } 
 
@@ -52,6 +57,10 @@ function addTaskToTable(task, time) {
     var taskTime = row.insertCell(1);
     taskTime.innerHTML = time;
 
+    clearForm();
+}
+
+function clearForm() {
     document.forms["newTask"]["task"].value = "";
     document.forms["newTask"]["time"].value = "";
 }
@@ -60,9 +69,13 @@ function resetTasks() {
     /* Reset the tasklist */
     localStorage.setItem("taskJSON", null);
     localStorage.setItem("originalJSON", null);
+    loadTasks();
 }
 
 function loadTasks() {
+    var table = document.getElementById("taskTable");
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Required</b></td></tr><script> loadTasks();</script>";
+
     /* Populate the table with stored tasks */
     var tasks = JSON.parse(localStorage.getItem("taskJSON"));
     if (tasks !== null) {
