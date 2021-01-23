@@ -6,15 +6,19 @@ function addTask() {
     if (isNaN(time)) {
         document.getElementById("errorMessage").innerHTML = "Error! Please enter a numeric time value";
     } else {
-        document.getElementById("errorMessage").innerHTML = "";
-        addTaskToFile(task, time);
-        addTaskToTable(task,time);
+        if (task === "" || time === "") {
+            document.getElementById("errorMessage").innerHTML = "Error! You must enter values for both fields";
+        } else {
+           document.getElementById("errorMessage").innerHTML = "";
+            addTaskToFile(task, time);
+            addTaskToTable(task,time);
+        }
     }
 
   } 
 
 /* To do:
-Add validation
+Make sure you can't submit empty fields!
 */
 
 function addTaskToFile(task, time) {
