@@ -88,57 +88,6 @@
 	color: #333;
 }
 
-.floor1 .photos>div {
-	float: left;
-}
-
-.floor1 .photos .rgt {
-	float: right !important;
-}
-
-.floor1 .photos .ctr {
-	margin-left: 14px;
-	position: relative;
-}
-
-.floor1 .photos {
-	margin-top: 30px;
-}
-
-.floor1 .photos .up {
-	position: relative;
-	height: 350px;
-	overflow: hidden;
-}
-
-.floor1 .photos .down {
-	margin-top: 10px;
-	position: relative;
-	height: 350px;
-	overflow: hidden;
-}
-
-.floor1 .photos .ctr {
-	height: 715px;
-	overflow: hidden;
-}
-
-.floor1 .photos img {
-	display: block;
-}
-
-.floor1 .photos .cover {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0,0,0,0.5);
-	text-align: center;
-	font-size: 22px;
-	color: #fff;
-	line-height: 350px;
-}
 
 
 .floor2 .photos {
