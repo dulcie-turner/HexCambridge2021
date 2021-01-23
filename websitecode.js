@@ -11,7 +11,8 @@ function addTask() {
         } else {
            document.getElementById("errorMessage").innerHTML = "";
             addTaskToFile(task, time);
-            addTaskToTable(task,time);
+            addTaskToTable(task,time, "");
+            addTimeToTable(task);
         }
     }
 
@@ -34,14 +35,14 @@ function addTaskToFile(task, time) {
         }
 
         /* Loop through and join the previous tasks to the new one, to make an updated tasklist */
-        taskObj[String(previousID + 1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString()};
+        taskObj[String(previousID + 1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString(), actualTime:""};
         for (const [i] of Object.keys(originalJSON)) { 
-            taskObj[i] = {taskName: originalJSON[i]["taskName"], taskTime: originalJSON[i]["taskTime"], taskDate: originalJSON[i]["taskDate"]} 
+            taskObj[i] = {taskName: originalJSON[i]["taskName"], taskTime: originalJSON[i]["taskTime"], taskDate: originalJSON[i]["taskDate"], actualTime:originalJSON[i]["actualTime"]} 
         }
 
     } else {
         /* Create a brand new list of tasks*/
-        taskObj[String(1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString() };
+        taskObj[String(1)] = {taskName: task, taskTime: time, taskDate: new Date().toLocaleDateString(), actualTime:"" };
     }
 
     /* Store the updated list of tasks */
@@ -50,7 +51,7 @@ function addTaskToFile(task, time) {
 
 }
 
-function addTaskToTable(task, time) {
+function addTaskToTable(task, time, aTime) {
     /* Adds a new task to the bottom of the table */
     var table = document.getElementById("taskTable");
     var row = table.insertRow(-1);
@@ -61,8 +62,81 @@ function addTaskToTable(task, time) {
     var taskTime = row.insertCell(1);
     taskTime.innerHTML = time;
 
+    var actualTime = row.insertCell(2);
+    actualTime.innerHTML = aTime;
+
     clearForm();
 }
+
+function addTimeToTable(task) {
+    /* Adds a new time to the bottom of the table */
+    var table = document.getElementById("timeTable");
+    var row = table.insertRow(-1);
+
+    var timeName = row.insertCell(0);
+    timeName.innerHTML = task;
+
+    var taskTime = row.insertCell(1);
+
+    var form = document.createElement("form");
+    var txtBox = document.createElement("input");
+    txtBox.type = "text";
+    txtBox.classList.add(task);
+
+    var button = document.createElement("input");
+    button.type = "button";
+    button.classList.add( task);
+    button.value = "Enter";
+    button.setAttribute( "onClick", "handleTime(this.className)");
+    
+    form.appendChild(txtBox);
+    form.appendChild(button);
+
+    taskTime.appendChild(form);
+}
+
+function handleTime(buttonClass) {
+    /* update object and save */
+    /* update table */
+    var inputs = document.getElementsByClassName(buttonClass);
+    var txtBox;
+    if (inputs[0].type == "text") {
+        txtBox = inputs[0];
+    } else {
+        txtBox = inputs[1];
+    }
+
+    if (isNaN(txtBox.value)) {
+        document.getElementById("timeError").innerHTML = "Error: Time must be a numerical value";
+    } else {
+        if (txtBox.value === "") {  document.getElementById("timeError").innerHTML = "Error: A value is required";}
+        else {
+
+            /* Update actual time taken */
+        document.getElementById("timeError").innerHTML = "";
+
+        var originalJSON = JSON.parse(localStorage.getItem("taskJSON"));
+        /* Find task from its name */
+        for (const [i] of Object.keys(originalJSON)) {
+            if (originalJSON[i]["taskName"] === buttonClass) {
+                
+                originalJSON[i]["actualTime"] = txtBox.value;
+                txtBox.value = "";
+                
+                var taskJSON = JSON.stringify(originalJSON);
+                localStorage.setItem("taskJSON", taskJSON);
+                
+                fullUpdate();
+                break
+            }
+        }
+    }
+    }
+
+
+
+}
+
 
 function clearForm() {
     document.forms["newTask"]["task"].value = "";
@@ -73,18 +147,39 @@ function resetTasks() {
     /* Reset the tasklist */
     localStorage.setItem("taskJSON", null);
     localStorage.setItem("originalJSON", null);
-    loadTasks();
+    fullUpdate();
 }
 
 function loadTasks() {
     var table = document.getElementById("taskTable");
-    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Required</b></td></tr><script> loadTasks();</script>";
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Estimated</b></td><td><b>Time Taken</b></td></tr><script> loadTasks();</script>";
 
     /* Populate the table with stored tasks */
     var tasks = JSON.parse(localStorage.getItem("taskJSON"));
     if (tasks !== null) {
      for (const [i] of Object.keys(tasks)) {
-            addTaskToTable(tasks[i]["taskName"], tasks[i]["taskTime"]);
+         console.log(tasks[i]["actualTime"]);
+            addTaskToTable(tasks[i]["taskName"], tasks[i]["taskTime"], tasks[i]["actualTime"]);
      }
     }
+}
+
+function loadTimes() {
+    var table = document.getElementById("timeTable");
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Taken</b></td></tr><script> loadTimes();</script>";
+
+    /* Populate the table with stored times */
+    var tasks = JSON.parse(localStorage.getItem("taskJSON"));
+    if (tasks !== null) {
+     for (const [i] of Object.keys(tasks)) {
+            if(tasks[i]["actualTime"] === "") {
+                addTimeToTable(tasks[i]["taskName"]);
+            }
+     }
+    }
+}
+
+function fullUpdate() {
+    loadTasks();
+    loadTimes();
 }
