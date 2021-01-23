@@ -2,26 +2,24 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
+<script src="websitecode.js"></script> 
 </head>
 
 
 <body>
-
 <h1>Test</h1>
-<form onsubmit="addTask" name="addTask">
+<form name="newTask">
     <label for="task">Task:</label><br>
     <input type="text" id="task" name="task" value=""><br>
-    <input type="submit" value="Add to Calendar">
+    <input type="button" onclick="addTask()" value="Add to Calendar">
 </form> 
 
-<p id="taskContainer"></p>
+<br>
 
-<script>
-function addTask() {
-  var task = document.forms["addTask"]["task"].value;
-  document.getElementById("taskContainer").innerText = task;
-} 
- </script>
+<table id="taskList" border="2">
+    <tr><td><b>Task Name</b></td></tr>
+</table>
+
 
 </body>
 </html> 
