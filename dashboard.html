@@ -7,15 +7,16 @@
 
 
 <body>
-<h1>Test</h1>
+<h1>Add a Task:</h1>
 <div id="createTask" style="width:40%; border-style:solid; padding:15px">
 <form name="newTask">
     <label for="task" style="width:50px; float:left" >Task:</label>
     <input type="text" id="task" name="task" value="" style="overflow: auto; width:80%"><br>
-
+    <br>
     <label for="time" style="width:120px; float:left">Time Required:</label>
-    <input type="text" id="time" name="time" value="" style="overflow: auto; width:57.5%"><br>
-    <input type="button" onclick="addTask()" value="Add to Calendar">
+    <input type="text" id="time" name="time" value="" style="overflow: auto; width:80%"><br>
+    <br> 
+    <input type="button" id="but_addtocal" onclick="addTask()" value="Add to Calendar">
 </form> 
 </div>
 
