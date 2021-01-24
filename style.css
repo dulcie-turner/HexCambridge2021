@@ -1,39 +1,63 @@
 h1 {
-    color: rgb(255, 51, 0);
+    color: rgb(0, 0, 0);
     font-family:Arial, 'Open Sans', Helvetica, sans-serif;
     font-size: 38px;
     font-weight: bold;
+    /*position: relative;
+    left: 200px;
+    top: 65px;*/
 }
+/*h2 {
+    color: rgb(0, 0, 0);
+    font-family:Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    position: relative;
+    left: 600px;
+}*/
 
-html {background-color:rgb(247, 238, 199);}
+html {background-color:rgb(255, 255, 255);}
 
-.createTask {
+#createTask {
+    position: relative;
+    left: 200px;
 
 }
 label {
-    color: rgb(255, 51, 0);
+    color: rgb(0, 0, 0);
     font-family: Arial, 'Open Sans', Helvetica, sans-serif;
     font-size: 16px;
     font-weight: normal; 
 
 }
 #but_addtocal {
-    background-color: rgb(189, 173, 144);
+    background-color: rgb(223, 215, 201);
     border: none;
-    color: rgb(255, 51, 0);
+    color: rgb(0, 0, 0);
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 8px;
-    padding: 10px 24px;}
-}
+    padding: 5px 10px;}
+
+#but_resetcal {
+    background-color: rgb(223, 215, 201);
+    border: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 5px 10px;}
+
 #time{
     font-family: Arial, 'Open Sans', Helvetica, sans-serif;
     font-size: 16px;
     font-weight: normal;
     border-radius: 4px;
-    color: rgb(230, 230, 230);
+    color: rgb(0, 0, 0);
 
 }
 #task{
@@ -41,5 +65,14 @@ label {
     font-size: 16px;
     font-weight: normal;
     border-radius: 4px;
-    color: rgb(230, 230, 230);
+    color: rgb(0, 0, 0);
+}
+#taskTable {
+    position: relative;
+    left: 600px;
+    bottom: 300px;
+    border-collapse: collapse;
+    font-family: Arial, 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
 }
