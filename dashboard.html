@@ -89,9 +89,9 @@
 							<label for="time" style="width:160px; float:left">Time Required (minutes):</label>
 							<input type="text" id="time" name="time" value="" style="overflow: auto; width:44%"><br><br>
 							
-							<input type="button" id="but_addtocal" onclick="addTask()" value="Add to Calendar">
+							<input type="button" class="myButton" id="but_addtocal" onclick="addTask()" value="Add to Calendar">
 
-							<input type="button" id="but_resetcal" onclick="resetTasks()" style="float:right"
+							<input type="button" class="myButton" id="but_resetcal" onclick="resetTasks()" style="float:right"
 								value="Clear Calendar">
 
 
@@ -164,11 +164,11 @@
 								<input type="radio" id="work3" name="work" value="heavy">
 								<label for="work3">Heavy</label><br><br>
 						
-								<input type="button" class="quizButton" value="Submit" onclick="answerQuiz()" >
+								<input type="button" class="myButton" value="Submit" onclick="answerQuiz()" >
 							</form>
 							<p id="result" style="font-size: 90%;"></p>
 							<br>
-							<button id="reset" class="quizButton" value="Retake quiz" onclick="resetQuiz()" style="display: none">Retake Quiz</button>
+							<button id="reset" class="myButton" value="Retake quiz" onclick="resetQuiz()" style="display: none">Retake Quiz</button>
 						</div>
 						</div>
 				</td>
