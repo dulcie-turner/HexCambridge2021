@@ -18,6 +18,7 @@ function addTask() {
         }
     }
 
+    totalTime();
   } 
 
 function getTaskID(name) {
@@ -25,6 +26,28 @@ function getTaskID(name) {
     for (const [i] of Object.keys(tasks)) {
             if (tasks[i]["taskName"] === name) { return i};
     }   
+}
+
+function totalTime(){
+    var tasks = JSON.parse(localStorage.getItem("taskJSON"));
+    var timeTotal = 0;
+
+    for (const [i] of Object.keys(tasks)) {
+        timeTotal += Number(tasks[i]["taskTime"]);
+    }
+
+    var hours = Math.round((timeTotal / 60) * 100) / 100;
+    
+    if (hours > 8) {
+        var message = "You have " + String(hours) + " hours of work today - that's quite a lot! ";
+    } else if (hours > 6) {
+        var message = "You have a reasonable schedule today - " + String(hours) + " hours of work!";
+    } else {
+        if (hours > 0){ var message = "You have a light schedule today: only " + String(hours) + " hours of work!";}
+        else {message = ""}
+    }
+ 
+    document.getElementById("timeDisplay").innerHTML = message;
 }
 
 /* To do:
@@ -151,6 +174,7 @@ function handleTime(buttonClass) {
 
 function clearForm() {
     document.getElementsByName("newTask")[0].reset();
+    totalTime();
 }
 
 function resetTasks() {
@@ -190,4 +214,5 @@ function loadTimes() {
 function fullUpdate() {
     loadTasks();
     loadTimes();
+
 }
