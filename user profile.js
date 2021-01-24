@@ -1,5 +1,5 @@
 
-function name()
+/*function name()
 {
     first_name = input("what is your first name? ");
     last_name = input("what is your last name? ");
@@ -257,4 +257,6 @@ function more_ed(gen_list)
 
 
 name()
-gen_list = []
+gen_list = []*/
+
+
