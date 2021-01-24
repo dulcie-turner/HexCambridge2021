@@ -1,119 +1,192 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<head>
+
+	<head>
 		<meta charset="utf-8" />
 		<title>Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
 		<!-- add css -->
 		<link rel="stylesheet" type="text/css" href="css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/button.css" />
 
 		<!-- swiper-->
 		<script lang="javascript" type="text/javascript" src="js/swiper.min.js"></script>
 		<!-- jquery -->
 		<script lang="javascript" type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 		<!--  js -->
-        <script lang="javascript" type="text/javascript" src="js/index.js"></script>
-        <script lang="javascript" type="text/javascript" src="websitecode.js"></script>
-</head>
+		<script lang="javascript" type="text/javascript" src="js/index.js"></script>
+		<script lang="javascript" type="text/javascript" src="websitecode.js"></script>
+		<script lang="javascript" type="text/javascript" src="wellnesshabits.js"></script>
+	</head>
 
 
 <body>
-<!-- head -->
-		<div class="header">
-			<!-- guide -->
-			<div class="nav">
-				<div class="container">
-					<div class="logo">
-						<img src="img/logo.png" alt="" width=60px height=50px>
-					</div>
-					<ul class="clearfix">
-						<li><a href="index.html">Home page</a></li>
-						<li>
-							<a href="dashboard.html">Dashboard</a>
-							
-						</li>
-						<li><a href="#">Health</a>
-							<dl>
-								<dd><a href="Burnout.html">Burnout info</a></dd>
-								<dd><a href="wellnesshabits.html">Wellness habits</a></dd>
-							</dl>
-						</li>
-						<li><a href="#">Sign up</a>
-							
-						</li>
-						<li><a href="#">My Account</a>
-                                                     <dl>
-                                                        <dd><a href="#">Sign in</a></dd>
-                                                        <dd><a href="Userprofile.html">Profile</a></dd>                                                                                                                                                                                                                                                               <dd><a href="#">Sign out</a></dd>
-							
-						</li>
-						<li><a href="#">About us</a>
-							<dl>
-								<dd><a href="#">Contact</a></dd>
-								<dd><a href="#">Help</a></dd>
-								
-							</dl>
-						</li>
-					</ul>
+	<!-- head -->
+	<div class="header">
+		<!-- guide -->
+		<div class="nav" id="navFixed">
+			<div class="container">
+				<div class="logo">
+					<img src="img/logo.png" alt="" width=60px height=50px>
 				</div>
+				<ul class="clearfix">
+					<li><a href="index.html">Home page</a></li>
+					<li>
+						<a href="dashboard.html">Dashboard</a>
+
+					</li>
+					<li><a href="Burnout.html">Burnout Info</a></li>
+					<li><a href="SignUp.html">Sign up</a>
+
+					</li>
+					<li><a href="#">My Account</a>
+						<dl>
+							<dd><a href="Signin.html">Sign in</a></dd>
+							<dd><a href="Userprofile.html">Profile</a></dd>
+							<dd><a href="#">Sign out</a></dd>
+
+					</li>
+					<li><a href="#">About us</a>
+						<dl>
+							<dd><a href="#">Contact</a></dd>
+							<dd><a href="#">Help</a></dd>
+
+						</dl>
+					</li>
+				</ul>
 			</div>
-	
-<h1>Test</h1>
-
-<div id="calendar" style="float: right">
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=Y192MzhyY2NzcDUzN2gybWwxNmg2Z3N1anVxa0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;showTitle=0&amp;showTz=0&amp;mode=MONTH&amp;showPrint=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-</div>
+		</div>
 
 
-<div id="createTask" style="width:20%; border-style:solid; padding:10px">
-<form name="newTask">
-    <label for="task" style="width:50px; float:left" >Task:</label>
-    <input type="text" id="task" name="task" value="" style="overflow: auto; width:80%"><br><br>
 
-    <label for="time" style="width:160px; float:left">Time Required (hours):</label>
-    <input type="text" id="time" name="time" value="" style="overflow: auto; width:44%"><br><br>
-    
-    <input type="button" id="but_addtocal" onclick="addTask()" value="Add to Calendar">
-    <br>
-    <br>
-    <input type="button" id="but_resetcal" onclick="resetTasks()" style="float:right" value="Clear Calendar">
-    <br>
-</form> 
-<p id="errorMessage" style="color:red"></p>
-</div>
+		<table id="dashboardTable" style="vertical-align: top; display: inline-block;  width: 52%">
+			<tr>
+				<td style="width:50%; vertical-align: top; " rowspan=3>
+					<div id="taskList" style="border-style:solid; border-radius:5px;  padding:10px;" >
+						<h1> Task List</h1>
+						<br>
+						<table id="taskTable">
+							<tr>
+								<td><b>Task Name</b></td>
+								<td><b>Time Estimated</b></td>
+								<td><b>Time Taken</b></td>
+							</tr>
+							<script> loadTasks();</script>
+						</table>
+					</div>
+					<br>
+					<br>
+				</td>
+				<td style="width: auto"></td>
+				<td style="width:50%; vertical-align: top">
+					<div id="createTask" style=" border-style:solid;  border-radius:5px;  padding:10px; margin-right:20px; ">
+						<form name="newTask">
+							<label for="task" style="width:50px; float:left">Task:</label>
+							<input type="text" id="task" name="task" value="" style="overflow: auto; width:80%"><br><br>
+
+							<label for="time" style="width:160px; float:left">Time Required (minutes):</label>
+							<input type="text" id="time" name="time" value="" style="overflow: auto; width:44%"><br><br>
+							
+							<input type="button" class="myButton" id="but_addtocal" onclick="addTask()" value="Add to Calendar">
+
+							<input type="button" class="myButton" id="but_resetcal" onclick="resetTasks()" style="float:right"
+								value="Clear Calendar">
 
 
-<br>
+						</form>
+						<p id="errorMessage" style="color:red"></p>
+					</div>
 
-<div id="taskList">
-<table id="taskTable" border="2">
-    <tr><td><b>Task Name</b></td>
-        <td><b>Time Estimated</b></td>
-        <td><b>Time Taken</b></td>
-    </tr>
-    <script> loadTasks();</script>
-</table>
-</div>
-<br>
-<br>
+				</td>
 
-<div id="timeList">
-    <table id="timeTable" border="2">
-        <tr><td><b>Task Name</b></td>
-            <td><b>Time Taken</b></td>
-        </tr>
-        <script> loadTimes();</script>
-    </table>
-    <p id="timeError" style="color:red"></p>
-    </div>
-    
+			</tr>
+
+			<tr  >
+				<td style="width:auto; vertical-align: top"></td>
+				<td style="width:50%; vertical-align: top;" >
+					<div id="timeList" style="border-style: solid;  border-radius:5px; margin-right: 20px; padding:5px">
+						<h2 style="padding: 5px"> Reflection</h2>
+						<table id="timeTable"  style="width:100%">
+							<tr>
+								<td><b>Task Name</b></td>
+								<td><b>Actual Time Taken</b></td>
+							</tr>
+							<script> loadTimes();</script>
+						</table>
+						<p id="timeError" style="color:red"></p>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td style="width:auto"></td>
+				<td style="width:25%; vertical-align: top;">
+				
+					<div id="wellness" style="border-style:solid;  border-radius:5px; margin-right: 20px; padding: 10px; text-align: center;">
+						<h1> Wellness Habits</h1>
+						
+						<div id="survey" style="width: 100%; ">
+							<p style="font-size: 90%;"> Take the quiz to get ideas for fitting wellness into your day!</p>
+							<br>
+							<form id="quiz" style="text-align: left;">
+								<p>What's your favourite way to recharge?</p>
+								<input type="radio" id="pref1" name="pref" value="exercise">
+								<label for="pref1">Exercising</label><br>
+								<input type="radio" id="pref2" name="pref" value="social">
+								<label for="pref2">Socialising</label><br>  
+								<input type="radio" id="pref3" name="pref" value="relax">
+								<label for="pref3">Relaxing</label><br><br>
+						
+								<p>How large is your workload today?</p>
+								<input type="radio" id="work1" name="work" value="light">
+								<label for="work1">Light</label><br>
+								<input type="radio" id="work2" name="work" value="medium">
+								<label for="work2">Medium</label><br>  
+								<input type="radio" id="work3" name="work" value="heavy">
+								<label for="work3">Heavy</label><br><br>
+						
+								<input type="button" class="myButton" value="Submit" onclick="answerQuiz()" >
+							</form>
+							<p id="result" style="font-size: 90%;"></p>
+							<br>
+							<button id="reset" class="myButton" value="Retake quiz" onclick="resetQuiz()" style="display: none">Retake Quiz</button>
+						</div>
+						</div>
+				</td>
+			</tr>
+
+		</table>
+
+		<div style=" vertical-align: top; float:right" >
+
+			<div id="calendar" style=" text-align:right; margin: 10px; margin-top:0px">
+
+				<iframe
+					src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=Y192MzhyY2NzcDUzN2gybWwxNmg2Z3N1anVxa0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;showPrint=0&amp;showTz=0"
+					style="border:solid 1px #777" width="700" height="600" frameborder="0"
+					scrolling="no"></iframe>
+			</div>
+
+
+
+
+</th>
+
+
+
+
+
+
+
+
 
 
 
 		<!-- Back to top-->
 		<div class="gotoTop"></div>
 </body>
-</html> 
+
+</html>

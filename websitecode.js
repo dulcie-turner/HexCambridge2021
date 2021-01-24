@@ -10,13 +10,22 @@ function addTask() {
             document.getElementById("errorMessage").innerHTML = "Error! You must enter values for both fields";
         } else {
            document.getElementById("errorMessage").innerHTML = "";
+           
             addTaskToFile(task, time);
             addTaskToTable(task,time, "");
-            addTimeToTable(task);
+            addTimeToTable(task, getTaskID(task));
+            clearForm();
         }
     }
 
   } 
+
+function getTaskID(name) {
+    var tasks = JSON.parse(localStorage.getItem("taskJSON"));
+    for (const [i] of Object.keys(tasks)) {
+            if (tasks[i]["taskName"] === name) { return i};
+    }   
+}
 
 /* To do:
 Make sure you can't submit empty fields!
@@ -53,6 +62,7 @@ function addTaskToFile(task, time) {
 
 function addTaskToTable(task, time, aTime) {
     /* Adds a new task to the bottom of the table */
+    console.log(task);
     var table = document.getElementById("taskTable");
     var row = table.insertRow(-1);
 
@@ -65,10 +75,9 @@ function addTaskToTable(task, time, aTime) {
     var actualTime = row.insertCell(2);
     actualTime.innerHTML = aTime;
 
-    clearForm();
 }
 
-function addTimeToTable(task) {
+function addTimeToTable(task, ID) {
     /* Adds a new time to the bottom of the table */
     var table = document.getElementById("timeTable");
     var row = table.insertRow(-1);
@@ -81,11 +90,12 @@ function addTimeToTable(task) {
     var form = document.createElement("form");
     var txtBox = document.createElement("input");
     txtBox.type = "text";
-    txtBox.classList.add(task);
+    txtBox.classList.add(ID);
 
     var button = document.createElement("input");
     button.type = "button";
-    button.classList.add( task);
+    button.classList.add(ID);
+    button.name = ("enterButton");
     button.value = "Enter";
     button.setAttribute( "onClick", "handleTime(this.className)");
     
@@ -100,6 +110,7 @@ function handleTime(buttonClass) {
     /* update table */
     var inputs = document.getElementsByClassName(buttonClass);
     var txtBox;
+    console.log(inputs);
     if (inputs[0].type == "text") {
         txtBox = inputs[0];
     } else {
@@ -118,7 +129,7 @@ function handleTime(buttonClass) {
         var originalJSON = JSON.parse(localStorage.getItem("taskJSON"));
         /* Find task from its name */
         for (const [i] of Object.keys(originalJSON)) {
-            if (originalJSON[i]["taskName"] === buttonClass) {
+            if (i === buttonClass) {
                 
                 originalJSON[i]["actualTime"] = txtBox.value;
                 txtBox.value = "";
@@ -139,8 +150,7 @@ function handleTime(buttonClass) {
 
 
 function clearForm() {
-    document.forms["newTask"]["task"].value = "";
-    document.forms["newTask"]["time"].value = "";
+    document.getElementsByName("newTask")[0].reset();
 }
 
 function resetTasks() {
@@ -152,13 +162,11 @@ function resetTasks() {
 
 function loadTasks() {
     var table = document.getElementById("taskTable");
-    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Estimated</b></td><td><b>Time Taken</b></td></tr><script> loadTasks();</script>";
-
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Estimated</b></td><td><b>Time Taken</b></td></tr><script> loadTasks();</script>"
     /* Populate the table with stored tasks */
     var tasks = JSON.parse(localStorage.getItem("taskJSON"));
     if (tasks !== null) {
      for (const [i] of Object.keys(tasks)) {
-         console.log(tasks[i]["actualTime"]);
             addTaskToTable(tasks[i]["taskName"], tasks[i]["taskTime"], tasks[i]["actualTime"]);
      }
     }
@@ -166,14 +174,14 @@ function loadTasks() {
 
 function loadTimes() {
     var table = document.getElementById("timeTable");
-    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Taken</b></td></tr><script> loadTimes();</script>";
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Actual Time Taken</b></td></tr><script> loadTimes();</script>";
 
     /* Populate the table with stored times */
     var tasks = JSON.parse(localStorage.getItem("taskJSON"));
     if (tasks !== null) {
      for (const [i] of Object.keys(tasks)) {
             if(tasks[i]["actualTime"] === "") {
-                addTimeToTable(tasks[i]["taskName"]);
+                addTimeToTable(tasks[i]["taskName"], i);
             }
      }
     }

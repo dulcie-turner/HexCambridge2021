@@ -12,7 +12,7 @@
 
 #navFixed {
 	position: relative;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 
 .nav .container {
@@ -100,7 +100,9 @@
 }
 
 
-
+td {
+	padding: 5px;
+}
 
 
 
@@ -279,3 +281,102 @@
 	overflow: hidden;
 }
 
+
+#but_addtocal {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+#but_addtocal:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+#but_addtocal:active {
+	position:relative;
+	top:1px;
+}
+
+#but_resetcal {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:12px;
+	padding:7px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+#but_resetcal:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+#but_resetcal:active {
+	position:relative;
+	top:1px;
+}
+
+		
+.quizButton {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+
+	display: block;
+	margin: auto;
+}
+.quizButton:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.quizButton:active {
+	position:relative;
+	top:1px;
+}
+
+input[name="enterButton"] {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:10px;
+	padding:3px 20px;
+	margin-left: 5px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+input[name="enterButton"] {
+	background-color:#f6f6f6;
+}
+input[name="enterButton"] {
+	position:relative;
+	top:1px;
+}
