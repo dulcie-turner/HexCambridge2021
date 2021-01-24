@@ -14,6 +14,7 @@ function addTask() {
             addTaskToFile(task, time);
             addTaskToTable(task,time, "");
             addTimeToTable(task, getTaskID(task));
+            clearForm();
         }
     }
 
@@ -61,6 +62,7 @@ function addTaskToFile(task, time) {
 
 function addTaskToTable(task, time, aTime) {
     /* Adds a new task to the bottom of the table */
+    console.log(task);
     var table = document.getElementById("taskTable");
     var row = table.insertRow(-1);
 
@@ -73,7 +75,6 @@ function addTaskToTable(task, time, aTime) {
     var actualTime = row.insertCell(2);
     actualTime.innerHTML = aTime;
 
-    clearForm();
 }
 
 function addTimeToTable(task, ID) {
@@ -94,6 +95,7 @@ function addTimeToTable(task, ID) {
     var button = document.createElement("input");
     button.type = "button";
     button.classList.add(ID);
+    button.name = ("enterButton");
     button.value = "Enter";
     button.setAttribute( "onClick", "handleTime(this.className)");
     
@@ -108,6 +110,7 @@ function handleTime(buttonClass) {
     /* update table */
     var inputs = document.getElementsByClassName(buttonClass);
     var txtBox;
+    console.log(inputs);
     if (inputs[0].type == "text") {
         txtBox = inputs[0];
     } else {
@@ -147,7 +150,7 @@ function handleTime(buttonClass) {
 
 
 function clearForm() {
-    document.forms["newTask"].reset();
+    document.getElementsByName("newTask")[0].reset();
 }
 
 function resetTasks() {
@@ -158,10 +161,8 @@ function resetTasks() {
 }
 
 function loadTasks() {
-    console.log(document.forms);
     var table = document.getElementById("taskTable");
-    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Estimated</b></td><td><b>Time Taken</b></td></tr><script> loadTasks();</script>";
-
+    table.innerHTML = "<tr><td><b>Task Name</b></td><td><b>Time Estimated</b></td><td><b>Time Taken</b></td></tr><script> loadTasks();</script>"
     /* Populate the table with stored tasks */
     var tasks = JSON.parse(localStorage.getItem("taskJSON"));
     if (tasks !== null) {
@@ -180,7 +181,6 @@ function loadTimes() {
     if (tasks !== null) {
      for (const [i] of Object.keys(tasks)) {
             if(tasks[i]["actualTime"] === "") {
-                console.log(tasks[i]["taskName"]);
                 addTimeToTable(tasks[i]["taskName"], i);
             }
      }
